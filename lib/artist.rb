@@ -1,4 +1,3 @@
-require "pry"
 class Artist
     attr_accessor :name
     @@all=[]
@@ -21,13 +20,12 @@ class Artist
     end
 
     def self.find_or_create_by_name(name)
-        new_aritist=Artist.new(name)
-       if aritist1=@@all.find {|value|
+        if artist1=@@all.find{|value|
             value.name==name
         }
-            return new_aritist = aritist1
+        artist1
         else
-            return new_aritist
+        new_aritist=Artist.new(name)
         end
     end
 
