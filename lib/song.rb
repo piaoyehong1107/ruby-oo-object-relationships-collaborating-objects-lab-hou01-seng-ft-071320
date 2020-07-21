@@ -1,4 +1,3 @@
-require "pry"
 class Song
     attr_accessor :name, :artist
     @@all=[]
@@ -19,7 +18,7 @@ class Song
         new_song.artist_name=file_name[0]
         new_song
     end
-    
+
     def artist_name=(artist_name)
         self.artist=Artist.find_or_create_by_name(artist_name)
         artist.add_song(self)
