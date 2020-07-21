@@ -22,13 +22,12 @@ class Artist
 
     def self.find_or_create_by_name(name)
         new_aritist=Artist.new(name)
-        new_aritist.name=name
-       if arr=@@all.find_all {|value|
+       if aritist1=@@all.find {|value|
             value.name==name
         }
-        arr.first
+            return new_aritist = aritist1
         else
-            new_aritist
+            return new_aritist
         end
     end
 
