@@ -1,19 +1,23 @@
 class MP3Importer
-    attr_accessor :file_path,:file_name
+    attr_accessor :path
 
-    def initialize(file_path)
-        @file_path=file_path
-    end
-    def files(file_path)
-        file_name=[]
-        file_path.each {|paths|
-        paths.split("/")
-        file_name.push(new_path.last)
-        }
+    def initialize(path)
+        @path = path
     end
 
-    def import 
-        Song.new_by_filename(file_name)
+    def files
+#        puts "in files, path=#{@path}"
+#        puts "wd=#{Dir.getwd.sub(/.*ruby(.*)/, '\1')}"
+        filenames = Dir.chdir(@path) do | path |
+#            puts path
+            Dir.glob("*.mp3")
+        end
+        puts "names=#{filenames}"
+        filenames
     end
-
+   
+    def import
+       self.files.each{|value|
+        Song.new_by_filename(value.split(" - ")[0])}
+    end
 end
